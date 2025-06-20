@@ -1,0 +1,68 @@
+<!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        Valid email is required
+      </div>
+    </div>
+  
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        Password is required
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <div *ngIf="errorMessageLogin">{{ errorMessageLogin }}</div>
+</form> -->
+
+<div class="form-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Login</h2>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-control"
+        placeholder="Enter your email"
+      />
+      <small class="error" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+        Valid email is required.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="Enter your password"
+      />
+      <small class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+        Password is required (minimum 6 characters).
+      </small>
+    </div>
+
+    <button class="btn-submit" type="submit" [disabled]="loginForm.invalid">Login</button>
+    <span class="mt-4">Login without password, <a routerLink="/otpLogin">click here.</a></span>
+
+    <div class="button-group">
+      <button class="btn-secondary" routerLink="/signup">Signup</button>
+      <button class="btn-back" routerLink="/welcome">Home</button>
+    </div>
+  </form>
+</div>
+
+<!-- Success or error message -->
+<div *ngIf="loginMessage" class="alert" [ngClass]="{ 'alert-success': isSuccess, 'alert-danger': !isSuccess }">
+  {{ loginMessage }}
+</div>
+
+  
